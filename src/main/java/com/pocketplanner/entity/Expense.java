@@ -1,5 +1,7 @@
 package com.pocketplanner.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +14,8 @@ public class Expense {
 
     private String title;
     private Double amount;
-    private String category;
+private String category;
+private LocalDate date;
 
     public Expense() {
     }
@@ -48,4 +51,5 @@ public class Expense {
     public void setCategory(String category) {
         this.category = category;
     }
+    
 }
