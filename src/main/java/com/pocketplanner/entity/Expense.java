@@ -3,6 +3,9 @@ package com.pocketplanner.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "expenses")
@@ -12,10 +15,17 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String title;
+
+    @NotNull
+    @Positive
     private Double amount;
-private String category;
-private LocalDate date;
+
+    @NotBlank
+    private String category;
+
+    private LocalDate date;
 
     public Expense() {
     }
@@ -51,5 +61,12 @@ private LocalDate date;
     public void setCategory(String category) {
         this.category = category;
     }
-    
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

@@ -16,11 +16,23 @@ public class UserController {
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
     }
+
     @PostMapping("/login")
-public User login(@RequestBody User user) {
-    return userService.loginUser(
-            user.getEmail(),
-            user.getPassword()
-    );
-}
+    public User login(@RequestBody User user) {
+        return userService.loginUser(
+                user.getEmail(),
+                user.getPassword()
+        );
+    }
+
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id,
+                           @RequestBody User updatedUser) {
+        return userService.updateUser(id, updatedUser);
+    }
 }
