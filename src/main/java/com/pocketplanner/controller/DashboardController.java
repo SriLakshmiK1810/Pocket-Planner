@@ -22,6 +22,10 @@ public class DashboardController {
 
         Double totalExpenses = expenseRepository.getTotalExpenses();
 
+if (totalExpenses == null) {
+    totalExpenses = 0.0;
+}
+
         Budget budget = budgetRepository.findAll().stream()
                 .findFirst()
                 .orElse(null);
