@@ -24,6 +24,29 @@ public class Expense {
 
     @NotBlank
     private String category;
+    @NotBlank
+private String paymentMode;
+
+@NotBlank
+private String expenseType;
+private String billImage;
+
+private String merchantName;
+public String getBillImage() {
+    return billImage;
+}
+
+public void setBillImage(String billImage) {
+    this.billImage = billImage;
+}
+
+public String getMerchantName() {
+    return merchantName;
+}
+
+public void setMerchantName(String merchantName) {
+    this.merchantName = merchantName;
+}
 
     private LocalDate date;
 
@@ -61,6 +84,21 @@ public class Expense {
     public void setCategory(String category) {
         this.category = category;
     }
+    public String getPaymentMode() {
+    return paymentMode;
+}
+
+public void setPaymentMode(String paymentMode) {
+    this.paymentMode = paymentMode;
+}
+
+public String getExpenseType() {
+    return expenseType;
+}
+
+public void setExpenseType(String expenseType) {
+    this.expenseType = expenseType;
+}
 
     public LocalDate getDate() {
         return date;

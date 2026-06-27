@@ -16,4 +16,8 @@ public class BudgetController {
     public Budget saveBudget(@RequestBody Budget budget) {
         return budgetService.saveBudget(budget);
     }
+    @GetMapping("/latest")
+public Budget getLatestBudget() {
+    return budgetService.getLatestBudget();
+}
 }

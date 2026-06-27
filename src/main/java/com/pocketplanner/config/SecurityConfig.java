@@ -18,28 +18,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http
-    .cors(Customizer.withDefaults())
-    .csrf(csrf -> csrf.disable())
-    .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/api/users/**").permitAll()
-        .requestMatchers("/api/expenses/**").permitAll()
-        .requestMatchers("/api/budgets/**").permitAll()
-        .requestMatchers("/api/dashboard/**").permitAll()
-        .anyRequest().authenticated()
-    )
-    .httpBasic(Customizer.withDefaults());
-        return http.build();
-    }
-  
 @Bean
 public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
 
-    configuration.addAllowedOrigin("http://localhost:8081");
+    configuration.addAllowedOrigin("http://localhost:3000");
     configuration.addAllowedHeader("*");
     configuration.addAllowedMethod("*");
 
@@ -49,5 +32,24 @@ public CorsConfigurationSource corsConfigurationSource() {
     source.registerCorsConfiguration("/**", configuration);
 
     return source;
+}
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+    System.out.println("===== CUSTOM SECURITY CONFIG LOADED =====");
+
+    http
+        .cors(Customizer.withDefaults())
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/users/**").permitAll()
+            .requestMatchers("/api/expenses/**").permitAll()
+            .requestMatchers("/api/budgets/**").permitAll()
+            .requestMatchers("/api/dashboard/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .httpBasic(Customizer.withDefaults());
+
+    return http.build();
 }
 }

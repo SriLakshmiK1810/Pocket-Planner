@@ -20,10 +20,9 @@ public class DashboardService {
     public DashboardDTO getDashboard() {
 
         Double totalBudget = budgetRepository.findAll()
-                .stream()
-                .mapToDouble(Budget::getMonthlyBudget)
-                .sum();
-
+    .stream()
+    .mapToDouble(Budget::getAmount)
+    .sum();
         Double totalExpenses = expenseRepository.findAll()
                 .stream()
                 .mapToDouble(Expense::getAmount)

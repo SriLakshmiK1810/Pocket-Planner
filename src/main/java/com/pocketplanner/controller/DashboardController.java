@@ -26,14 +26,15 @@ if (totalExpenses == null) {
     totalExpenses = 0.0;
 }
 
-        Budget budget = budgetRepository.findAll().stream()
-                .findFirst()
-                .orElse(null);
+        java.util.List<Budget> budgets = budgetRepository.findAll();
+
+Budget budget = budgets.isEmpty()
+        ? null
+        : budgets.get(budgets.size() - 1);
 
         Double totalBudget = budget != null
-                ? budget.getMonthlyBudget()
-                : 0.0;
-
+        ? budget.getAmount()
+        : 0.0;
         Double remainingBalance = totalBudget - totalExpenses;
 
         return new DashboardDTO(
